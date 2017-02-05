@@ -1,52 +1,96 @@
-<div class="row">
-  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <pie-chart></pie-chart>
-  </div>
+<form (submit)="infos.getPersonalInfo(pernrInput.value)">
+  <input #pernrInput type="text">
+</form>
+
+<ba-card *ngIf="infos?.curEmpName">
+  <h2>{{infos.curEmpName.pernr}}</h2>
+  <h2>{{infos.curEmpName.firstname}}</h2>
+  <h2>{{infos.curEmpName.lastname}}</h2>
+</ba-card>
+
+<h1><i>{{infos.getMD0("action_5type","01")}}</i></h1>
+
+<div *ngIf="infos?.curEmpInfo?.it0000_tab">
+	<h1>0 Exist!</h1>
+	<ba-card *ngFor="let it0 of infos.curEmpInfo.it0000_tab">
+		<h3>{{it0.date_start}}</h3>
+		<h3>{{it0.date_end}}</h3>
+		<h3>{{it0.action_type}}</h3>
+		<h3>{{it0.reason_for_action}}</h3>
+		<h3>{{it0.employment_status}}</h3>
+		<h3>{{it0.change_date}}</h3>
+		<h3>{{it0.change_user}}</h3>
+	</ba-card>
 </div>
 
-<div class="row">
-  <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-xs-12"
-                     title="Acquisition Channels" baCardClass="traffic-panel medium-card">
-    <traffic-chart></traffic-chart>
-  </ba-card>
-
-  <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-xs-12"
-           title="Users by Country" baCardClass="medium-card">
-    <users-map></users-map>
-  </ba-card>
+<div *ngIf="infos?.curEmpInfo?.it0001_tab">
+	<h1>1 Exist!</h1>
+	<ba-card *ngFor="let it1 of infos.curEmpInfo.it0001_tab">
+		<h3>{{it1.date_start}}</h3>
+		<h3>{{it1.date_end}}</h3>
+		<h3>{{it1.company_code}}</h3>
+		<h3>{{it1.personal_area}}</h3>
+		<h3>{{it1.personal_subarea}}</h3>
+		<h3>{{it1.employee_group}}</h3>
+		<h3>{{it1.employee_subgroup}}</h3>
+		<h3>{{it1.business_area}}</h3>
+		<h3>{{it1.payrol_area}}</h3>
+		<h3>{{it1.cost_center}}</h3>
+		<h3>{{it1.last_first_name}}</h3>
+		<h3>{{it1.organization_unit}}</h3>
+		<h3>{{it1.organization_key}}</h3>
+		<h3>{{it1.position}}</h3>
+		<h3>{{it1.job_key}}</h3>
+		<h3>{{it1.change_date}}</h3>
+		<h3>{{it1.change_user}}</h3>
+	</ba-card>
 </div>
 
-<div class="row">
-  <div class="col-xlg-9 col-xl-6 col-lg-6  col-md-12 col-sm-12 col-xs-12">
-    <div class="row">
-      <ba-card class="col-xlg-8 col-xl-12 col-lg-12 col-md-7 col-sm-12 col-xs-12"
-               title="Revenue" baCardClass="medium-card">
-        <line-chart></line-chart>
-      </ba-card>
-      <ba-card class="col-xlg-4 col-xl-12 col-lg-12 col-md-5 col-sm-12 col-xs-12"
-               baCardClass="popular-app medium-card">
-        <popular-app></popular-app>
-      </ba-card>
-    </div>
-  </div>
-
-  <div class="col-xlg-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
-    <ba-card title="Feed"
-             baCardClass="large-card with-scroll feed-panel">
-      <feed></feed>
-    </ba-card>
-  </div>
-
+<div *ngIf="infos?.curEmpInfo?.it0002_tab">
+	<h1>2 Exist!</h1>
+	<ba-card *ngFor="let it2 of infos.curEmpInfo.it0002_tab">
+		<h3>{{it2.date_start}}</h3>
+		<h3>{{it2.date_end}}</h3>
+		<h3>{{it2.title}}</h3>
+		<h3>{{it2.last_name}}</h3>
+		<h3>{{it2.first_name}}</h3>
+		<h3>{{it2.matricule_snocs}}</h3>
+		<h3>{{it2.gender}}</h3>
+		<h3>{{it2.date_of_birth}}</h3>
+		<h3>{{it2.country_of_birth}}</h3>
+		<h3>{{it2.birthplace}}</h3>
+		<h3>{{it2.nationality}}</h3>
+		<h3>{{it2.second_nationality}}</h3>
+		<h3>{{it2.third_nationality}}</h3>
+		<h3>{{it2.com_language}}</h3>
+		<h3>{{it2.marital_status}}</h3>
+		<h3>{{it2.marital_status_since}}</h3>
+		<h3>{{it2.number_of_children}}</h3>
+		<h3>{{it2.change_date}}</h3>
+		<h3>{{it2.change_user}}</h3>
+	</ba-card>
 </div>
 
-<div class="row shift-up">
-  <ba-card class="col-xlg-3 col-lg-6 col-md-12 col-sm-12 col-xs-12" title="To Do List"
-           baCardClass="xmedium-card feed-comply-panel with-scroll todo-panel">
-    <todo></todo>
-  </ba-card>
-  <ba-card class="col-xlg-6 col-lg-6 col-md-12 col-sm-12 col-xs-12" title="Calendar"
-           baCardClass="xmedium-card feed-comply-panel with-scroll calendar-panel">
-    <calendar></calendar>
-  </ba-card>
+<div *ngIf="infos?.curEmpInfo?.it0006_tab">
+	<h1>6 Exist!</h1>
+	<ba-card *ngFor="let it6 of infos.curEmpInfo.it0006_tab">
+		<h3>{{it6.date_start}}</h3>
+		<h3>{{it6.date_end}}</h3>
+		<h3>{{it6.address_type}}</h3>
+		<h3>{{it6.contact_name}}</h3>
+		<h3>{{it6.street_and_house}}</h3>
+		<h3>{{it6.house_number}}</h3>
+		<h3>{{it6.city}}</h3>
+		<h3>{{it6.postal_code}}</h3>
+		<h3>{{it6.country}}</h3>
+		<h3>{{it6.prof_phone_number}}</h3>
+		<h3>{{it6.private_phone_number}}</h3>
+		<h3>{{it6.prof_gsm}}</h3>
+		<h3>{{it6.private_gsm}}</h3>
+		<h3>{{it6.prof_mail}}</h3>
+		<h3>{{it6.private_mail}}</h3>
+		<h3>{{it6.fax}}</h3>
+		<h3>{{it6.change_date}}</h3>
+		<h3>{{it6.change_user}}</h3>
+	</ba-card>
 </div>
-
