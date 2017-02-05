@@ -1,100 +1,113 @@
-<div class="row">
+
+<div class="row topform">
   <div class="col-xs-12 col-sm-10">
     <form (submit)="infos.getPersonalInfo(pernrInput.value)">
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <input  auto-complete #pernrInput type="text" [source]="infos.md_emp_list" [min-chars]="1" value-property-name="firstname" display-property-name="pernr">
+      <input  auto-complete #pernrInput type="text" [source]="infos.md_emp_list" [min-chars]="1" value-property-name="firstname" display-property-name="pernr" class="form-control" placeholder="Search for ...">
       <button type="submit" class="btn btn-primary">Search</button>
-      <button type="button" class="btn btn-primary">New</button>
+      <button type="button" class="btn btn-primary" (click)="newEmp()">New</button>
     </form>
   </div>
   <div class="col-xs-12 col-sm-1">
-    <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+    <i class="fa fa-refresh fa-2x" aria-hidden="true" title="Refresh Master Data"></i>
   </div>
 </div>
-<ba-card *ngIf="infos?.curEmpName">
-  <h2>{{infos.curEmpName.pernr}}</h2>
-  <h2>{{infos.curEmpName.firstname}}</h2>
-  <h2>{{infos.curEmpName.lastname}}</h2>
+<ba-card *ngIf="infos?.curEmpName" id="namepane">
+  <h4>Personal Number: <em>{{infos.curEmpName.pernr}}</em></h4>
+  <h2>Name: <b><i>{{infos.curEmpName.firstname}} {{infos.curEmpName.lastname}}</i></b></h2>
+  <h2></h2>
+  <button class="btn btn-info" [ngClass]="{'active': curView=='action' }" (click)="setView('action')">Action</button>
+  <button class="btn btn-info" [ngClass]="{'active': curView=='organization' }" (click)="setView('organization')">Organization</button>
+  <button class="btn btn-info" [ngClass]="{'active': curView=='personal' }" (click)="setView('personal')">Personal Data</button>
+  <button class="btn btn-info" [ngClass]="{'active': curView=='addresses' }" (click)="setView('addresses')">Addresses</button>
 </ba-card>
-<h1><i>{{infos.getMD0("action_5type","01")}}</i></h1>
-<div *ngIf="infos?.curEmpInfo?.it0000_tab">
-  <h1>0 Exist!</h1>
-  <ba-card *ngFor="let it0 of infos.curEmpInfo.it0000_tab">
-    <h3>{{it0.date_start}}</h3>
-    <h3>{{it0.date_end}}</h3>
-    <h3>{{it0.action_type}}</h3>
-    <h3>{{it0.reason_for_action}}</h3>
-    <h3>{{it0.employment_status}}</h3>
-    <h3>{{it0.change_date}}</h3>
-    <h3>{{it0.change_user}}</h3>
-  </ba-card>
+
+
+<div *ngIf="curView == 'action'">
+  <div *ngIf="infos?.curEmpInfo?.it0000_tab">
+    <ba-card class="onepart" *ngFor="let it0 of infos.curEmpInfo.it0000_tab">
+      <h3><span>date_start</span><i>{{it0.date_start}}</i></h3>
+      <h3><span>date_end</span><i>{{it0.date_end}}</i></h3>
+      <h3><span>action_type</span><i>{{it0.action_type}}</i></h3>
+      <h3><span>reason_for_action</span><i>{{it0.reason_for_action}}</i></h3>
+      <h3><span>employeement_status</span><i>{{it0.employment_status}}</i></h3>
+      <h3><span>change_date</span><i>{{it0.change_date}}</i></h3>
+      <h3><span>change_user</span><i>{{it0.change_user}}</i></h3>
+    </ba-card>
+  </div>
 </div>
-<div *ngIf="infos?.curEmpInfo?.it0001_tab">
-  <h1>1 Exist!</h1>
-  <ba-card *ngFor="let it1 of infos.curEmpInfo.it0001_tab">
-    <h3>{{it1.date_start}}</h3>
-    <h3>{{it1.date_end}}</h3>
-    <h3>{{it1.company_code}}</h3>
-    <h3>{{it1.personal_area}}</h3>
-    <h3>{{it1.personal_subarea}}</h3>
-    <h3>{{it1.employee_group}}</h3>
-    <h3>{{it1.employee_subgroup}}</h3>
-    <h3>{{it1.business_area}}</h3>
-    <h3>{{it1.payrol_area}}</h3>
-    <h3>{{it1.cost_center}}</h3>
-    <h3>{{it1.last_first_name}}</h3>
-    <h3>{{it1.organization_unit}}</h3>
-    <h3>{{it1.organization_key}}</h3>
-    <h3>{{it1.position}}</h3>
-    <h3>{{it1.job_key}}</h3>
-    <h3>{{it1.change_date}}</h3>
-    <h3>{{it1.change_user}}</h3>
-  </ba-card>
+
+<div *ngIf="curView == 'organization'">
+  <div *ngIf="infos?.curEmpInfo?.it0001_tab">
+    <ba-card class="onepart" *ngFor="let it1 of infos.curEmpInfo.it0001_tab">
+      <h3><span>date_start</span><i>{{it1.date_start}}</i></h3>
+      <h3><span>date_end</span><i>{{it1.date_end}}</i></h3>
+      <h3><span>company_code</span><i>{{it1.company_code}}</i></h3>
+      <h3><span>personal_area</span><i>{{it1.personal_area}}</i></h3>
+      <h3><span>personal_subarea</span><i>{{it1.personal_subarea}}</i></h3>
+      <h3><span>employee_group</span><i>{{it1.employee_group}}</i></h3>
+      <h3><span>employee_subgroup</span><i>{{it1.employee_subgroup}}</i></h3>
+      <h3><span>business_area</span><i>{{it1.business_area}}</i></h3>
+      <h3><span>payrol_area</span><i>{{it1.payrol_area}}</i></h3>
+      <h3><span>cost_center</span><i>{{it1.cost_center}}</i></h3>
+      <h3><span>last_first_name</span><i>{{it1.last_first_name}}</i></h3>
+      <h3><span>organization_unit</span><i>{{it1.organization_unit}}</i></h3>
+      <h3><span>organization_key</span><i>{{it1.organization_key}}</i></h3>
+      <h3><span>position</span><i>{{it1.position}}</i></h3>
+      <h3><span>job_key</span><i>{{it1.job_key}}</i></h3>
+      <h3><span>change_date</span><i>{{it1.change_date}}</i></h3>
+      <h3><span>change_user</span><i>{{it1.change_user}}</i></h3>
+    </ba-card>
+  </div>
 </div>
-<div *ngIf="infos?.curEmpInfo?.it0002_tab">
-  <h1>2 Exist!</h1>
-  <ba-card *ngFor="let it2 of infos.curEmpInfo.it0002_tab">
-    <h3>{{it2.date_start}}</h3>
-    <h3>{{it2.date_end}}</h3>
-    <h3>{{it2.title}}</h3>
-    <h3>{{it2.last_name}}</h3>
-    <h3>{{it2.first_name}}</h3>
-    <h3>{{it2.matricule_snocs}}</h3>
-    <h3>{{it2.gender}}</h3>
-    <h3>{{it2.date_of_birth}}</h3>
-    <h3>{{it2.country_of_birth}}</h3>
-    <h3>{{it2.birthplace}}</h3>
-    <h3>{{it2.nationality}}</h3>
-    <h3>{{it2.second_nationality}}</h3>
-    <h3>{{it2.third_nationality}}</h3>
-    <h3>{{it2.com_language}}</h3>
-    <h3>{{it2.marital_status}}</h3>
-    <h3>{{it2.marital_status_since}}</h3>
-    <h3>{{it2.number_of_children}}</h3>
-    <h3>{{it2.change_date}}</h3>
-    <h3>{{it2.change_user}}</h3>
-  </ba-card>
+
+<div *ngIf="curView == 'personal'">
+  <div *ngIf="infos?.curEmpInfo?.it0002_tab">
+    <ba-card class="onepart" *ngFor="let it2 of infos.curEmpInfo.it0002_tab">
+      <h3><span>date_start</span><i>{{it2.date_start}}</i></h3>
+      <h3><span>date_end</span><i>{{it2.date_end}}</i></h3>
+      <h3><span>title</span><i>{{it2.title}}</i></h3>
+      <h3><span>last_name</span><i>{{it2.last_name}}</i></h3>
+      <h3><span>first_name</span><i>{{it2.first_name}}</i></h3>
+      <h3><span>matricule_snocs</span><i>{{it2.matricule_snocs}}</i></h3>
+      <h3><span>gender</span><i>{{it2.gender}}</i></h3>
+      <h3><span>date_of_birth</span><i>{{it2.date_of_birth}}</i></h3>
+      <h3><span>country_of_birth</span><i>{{it2.country_of_birth}}</i></h3>
+      <h3><span>birthplace</span><i>{{it2.birthplace}}</i></h3>
+      <h3><span>nationality</span><i>{{it2.nationality}}</i></h3>
+      <h3><span>second_nationality</span><i>{{it2.second_nationality}}</i></h3>
+      <h3><span>third_nationality</span><i>{{it2.third_nationality}}</i></h3>
+      <h3><span>com_language</span><i>{{it2.com_language}}</i></h3>
+      <h3><span>marital_status</span><i>{{it2.marital_status}}</i></h3>
+      <h3><span>marital_status_since</span><i>{{it2.marital_status_since}}</i></h3>
+      <h3><span>number_of_childred</span><i>{{it2.number_of_children}}</i></h3>
+      <h3><span>change_date</span><i>{{it2.change_date}}</i></h3>
+      <h3><span>change_user</span><i>{{it2.change_user}}</i></h3>
+    </ba-card>
+  </div>
 </div>
-<div *ngIf="infos?.curEmpInfo?.it0006_tab">
-  <h1>6 Exist!</h1>
-  <ba-card *ngFor="let it6 of infos.curEmpInfo.it0006_tab">
-    <h3>{{it6.date_start}}</h3>
-    <h3>{{it6.date_end}}</h3>
-    <h3>{{it6.address_type}}</h3>
-    <h3>{{it6.contact_name}}</h3>
-    <h3>{{it6.street_and_house}}</h3>
-    <h3>{{it6.house_number}}</h3>
-    <h3>{{it6.city}}</h3>
-    <h3>{{it6.postal_code}}</h3>
-    <h3>{{it6.country}}</h3>
-    <h3>{{it6.prof_phone_number}}</h3>
-    <h3>{{it6.private_phone_number}}</h3>
-    <h3>{{it6.prof_gsm}}</h3>
-    <h3>{{it6.private_gsm}}</h3>
-    <h3>{{it6.prof_mail}}</h3>
-    <h3>{{it6.private_mail}}</h3>
-    <h3>{{it6.fax}}</h3>
-    <h3>{{it6.change_date}}</h3>
-    <h3>{{it6.change_user}}</h3>
-  </ba-card>
+
+<div *ngIf="curView == 'addresses'">
+  <div *ngIf="infos?.curEmpInfo?.it0006_tab">
+    <ba-card class="onepart" *ngFor="let it6 of infos.curEmpInfo.it0006_tab">
+      <h3><span>date_start</span><i>{{it6.date_start}}</i></h3>
+      <h3><span>date_end</span><i>{{it6.date_end}}</i></h3>
+      <h3><span>action_type</span><i>{{it6.address_type}}</i></h3>
+      <h3><span>contact_name</span><i>{{it6.contact_name}}</i></h3>
+      <h3><span>street_and_house</span><i>{{it6.street_and_house}}</i></h3>
+      <h3><span>house_number</span><i>{{it6.house_number}}</i></h3>
+      <h3><span>city</span><i>{{it6.city}}</i></h3>
+      <h3><span>postal_code</span><i>{{it6.postal_code}}</i></h3>
+      <h3><span>country</span><i>{{it6.country}}</i></h3>
+      <h3><span>prof_phone_number</span><i>{{it6.prof_phone_number}}</i></h3>
+      <h3><span>private_phone_number</span><i>{{it6.private_phone_number}}</i></h3>
+      <h3><span>prof_gsm</span><i>{{it6.prof_gsm}}</i></h3>
+      <h3><span>private_gsm</span><i>{{it6.private_gsm}}</i></h3>
+      <h3><span>prof_mail</span><i>{{it6.prof_mail}}</i></h3>
+      <h3><span>private_mail</span><i>{{it6.private_mail}}</i></h3>
+      <h3><span>fax</span><i>{{it6.fax}}</i></h3>
+      <h3><span>change_date</span><i>{{it6.change_date}}</i></h3>
+      <h3><span>change_user</span><i>{{it6.change_user}}</i></h3>
+    </ba-card>
+  </div>
+
 </div>

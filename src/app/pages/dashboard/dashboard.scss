@@ -21,3 +21,28 @@
 .blurCalendar {
   height: 475px;
 }
+
+#namepane button {
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#namepane button.active {
+  // background: red;
+  box-shadow: 0px 0px 5px 6px #ccc;
+}
+
+.onepart span {
+  font-size: 10px;
+}
+
+div.topform {
+  div {
+    form {
+      button {
+        margin: 10px 30px 10px 0px;
+
+      }
+    }
+  }
+}
