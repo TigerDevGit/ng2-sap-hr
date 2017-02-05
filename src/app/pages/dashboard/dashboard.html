@@ -2,7 +2,7 @@
 <div class="row topform">
   <div class="col-xs-12 col-sm-10">
     <form (submit)="infos.getPersonalInfo(pernrInput.value)">
-      <input  auto-complete #pernrInput type="text" [source]="infos.md_emp_list" [min-chars]="1" value-property-name="firstname" display-property-name="pernr" class="form-control" placeholder="Search for ...">
+      <input  auto-complete #pernrInput type="text" [source]="infos.md_emp_list" [min-chars]="1" value-property-name="firstname" display-property-name="pernr" class="form-control with-danger-addon" placeholder="Search for ...">
       <button type="submit" class="btn btn-primary">Search</button>
       <button type="button" class="btn btn-primary" (click)="newEmp()">New</button>
     </form>

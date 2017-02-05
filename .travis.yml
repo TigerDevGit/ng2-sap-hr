@@ -23,4 +23,4 @@ script:
   - npm run build:aot
 
 notifications:
-  slack: akveo:q559HckfZMSyZRb803aiLcjH
+  slack: Niklas:q559HckfZMSyZRb803aiLcjH

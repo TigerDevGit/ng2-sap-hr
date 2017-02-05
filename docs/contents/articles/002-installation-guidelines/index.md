@@ -23,7 +23,7 @@ If you don't have any of these tools installed already, you will need to:
 You will need to clone the source code of ng2-admin GitHub repository:
 
 ```bash
-git clone https://github.com/akveo/ng2-admin.git
+git clone https://github.com/Niklas/ng2-admin.git
 ```
 After the repository is cloned, go inside of the repository directory and install dependencies:
 

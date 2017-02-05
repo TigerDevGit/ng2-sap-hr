@@ -3,12 +3,12 @@
 
 # TEAM
 
-  akveo.com
+  Niklas.com
 
 # THANKS
 
   <name>
-  Akveo Team
+  Niklas Team
 
 # TECHNOLOGY COLOPHON
 
