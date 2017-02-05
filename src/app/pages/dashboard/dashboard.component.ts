@@ -8,8 +8,8 @@ import {InfosService} from './infos.service';
   templateUrl: './dashboard.html'
 })
 export class Dashboard {
-
   constructor(private infos: InfosService) {
+
   }
 
 }
